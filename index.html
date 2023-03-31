@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="drawCircle"></canvas>
+  </body>
+</html>
+<script>
+  let arr1 = [1, 123, 56, 234, 10001, 123, 64512, 1234];
+  let arr2 = [1283187239, 12333, 123, 2123123, 123123, 64512, 1234];
+  let arr3 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  function sort(num) {
+    let max = num[0];
+    let max2nd = num[0];
+    for (let i = 0; i < num.length; i++) {
+      if (max < num[i]) {
+        [max2nd, max] = [max, num[i]];
+      } else if (num[i] < max && num[i] > max2nd) {
+        max2nd = num[i];
+      }
+    }
+    return max2nd;
+  }
+
+  function deleteNumberFromArray(arr, index) {
+    if (index < 0 || index > arr.length) {
+      return arr;
+    } else {
+      arr.splice(index, 1);
+      return arr;
+    }
+  }
+
+  function sumOfListFibonacy(x) {
+    if (x === 0 || x === 1) {
+      return 0;
+    } else if (x === 2) {
+      return 1;
+    } else {
+      let sum = 2;
+      let a = 0;
+      let b = 1;
+      let c = a + b;
+      for (let i = 2; i < x - 1; i++) {
+        a = b;
+        b = c;
+        c = a + b;
+        sum += c;
+      }
+      return sum;
+    }
+  }
+
+  let canvas = document.getElementById("drawCircle");
+  let c = canvas.getContext("2d");
+  class Circle {
+    constructor(x, y, rad, color) {
+      this.x = x;
+      this.y = y;
+      this.rad = rad;
+      this.color = color;
+    }
+    render() {
+      c.beginPath();
+      c.arc(this.x, this.y, this.rad, 0, 2 * Math.PI);
+      c.fillStyle = this.color;
+      c.fill();
+    }
+  }
+
+  let circle = new Circle(100, 100, 50, "#D33333");
+</script>
